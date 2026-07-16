@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gam3ety | جمعيتي - سياسة الخصوصية</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #34D399;
+            --primary-bg: rgba(16, 185, 129, 0.1);
+            --secondary: #1F2937;
+            --secondary-light: #374151;
+            --secondary-dark: #111827;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --bg-primary: #F3F4F6;
+            --bg-secondary: #FFFFFF;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-light: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==================== Dark Mode ==================== */
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --bg-glass: rgba(31, 41, 55, 0.8);
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            transition: var(--transition);
+            min-height: 100vh;
+            padding: var(--spacing-md);
+            background-image: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        /* ==================== Glassmorphism ==================== */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-glass);
+        }
+
+        /* ==================== Container ==================== */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+        }
+
+        /* ==================== Header ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 2px solid var(--primary-bg);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-top: var(--spacing-xs);
+        }
+
+        .last-updated {
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            padding: 4px 16px;
+            background: var(--primary-bg);
+            border-radius: 50px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== Content ==================== */
+        .content {
+            margin-top: var(--spacing-lg);
+        }
+
+        .section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .section h2 .number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-md) 0;
+        }
+
+        .section ul li {
+            padding: var(--spacing-sm) 0;
+            padding-right: var(--spacing-xl);
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .section ul li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .highlight-box {
+            background: var(--primary-bg);
+            border-right: 4px solid var(--primary);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+
+        /* ==================== Buttons ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: 10px 24px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== Theme Toggle ==================== */
+        .theme-toggle {
+            position: fixed;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 22px;
+            }
+
+            .section h2 {
+                font-size: 19px;
+            }
+
+            .section h3 {
+                font-size: 16px;
+            }
+
+            .footer-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .theme-toggle {
+                top: var(--spacing-sm);
+                right: var(--spacing-sm);
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+
+            .highlight-box {
+                padding: var(--spacing-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 19px;
+            }
+
+            .section h2 {
+                font-size: 17px;
+            }
+
+            .section h2 .number {
+                width: 26px;
+                height: 26px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        🌙
+    </button>
+
+    <!-- Main Container -->
+    <div class="container glass">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png" alt="Gam3ety Logo">
+                <h1>سياسة الخصوصية</h1>
+            </div>
+            <p>نحن نولي خصوصية بياناتك أهمية كبيرة</p>
+            <span class="last-updated">آخر تحديث: 16 يوليو 2026</span>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Introduction -->
+            <div class="section">
+                <h2>
+                    <span class="number">1</span>
+                    المقدمة
+                </h2>
+                <p>
+                    مرحباً بك في <strong>جمعيتي</strong> (Gam3ety). نحن نلتزم بحماية خصوصية بياناتك 
+                    ونوضح في هذه السياسة كيفية جمع واستخدام وحماية المعلومات التي تقدمها لنا.
+                </p>
+                <div class="highlight-box">
+                    <p>
+                        <strong>ملخص:</strong> نقوم بجمع معلومات أساسية فقط لإدارة الجمعيات 
+                        ولا نشارك بياناتك مع أي طرف ثالث.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Data Collection -->
+            <div class="section">
+                <h2>
+                    <span class="number">2</span>
+                    البيانات التي نجمعها
+                </h2>
+                <p>نقوم بجمع المعلومات التالية لإدارة الجمعيات بشكل فعال:</p>
+                <ul>
+                    <li><strong>الاسم الكامل</strong> - لتحديد هوية العضو</li>
+                    <li><strong>رقم الهاتف</strong> - للتواصل وتأكيد البيانات</li>
+                    <li><strong>بيانات الجمعية</strong> - المبالغ المالية، التواريخ، وحالة العضوية</li>
+                    <li><strong>ملاحظات إضافية</strong> - أي معلومات تختار إضافتها</li>
+                </ul>
+                <p>
+                    <strong>ملاحظة:</strong> نحن <strong>لا نجمع</strong> أي معلومات حساسة مثل 
+                    أرقام البطاقات الائتمانية أو البيانات البنكية.
+                </p>
+            </div>
+
+            <!-- How We Use Data -->
+            <div class="section">
+                <h2>
+                    <span class="number">3</span>
+                    كيفية استخدام البيانات
+                </h2>
+                <p>نستخدم البيانات التي نجمعها للأغراض التالية:</p>
+                <ul>
+                    <li><strong>إدارة الجمعيات</strong> - تتبع المدفوعات والتحصيلات</li>
+                    <li><strong>التواصل</strong> - إرسال إشعارات وتحديثات مهمة</li>
+                    <li><strong>التقارير</strong> - إنشاء تقارير إدارية وإحصائيات</li>
+                    <li><strong>تحسين الخدمة</strong> - تطوير وتحسين تجربة المستخدم</li>
+                </ul>
+            </div>
+
+            <!-- Data Storage -->
+            <div class="section">
+                <h2>
+                    <span class="number">4</span>
+                    تخزين البيانات وأمانها
+                </h2>
+                <p>نتخذ إجراءات أمنية متقدمة لحماية بياناتك:</p>
+                <ul>
+                    <li><strong>التشفير</strong> - جميع البيانات مشفرة أثناء النقل والتخزين</li>
+                    <li><strong>قواعد بيانات آمنة</strong> - نستخدم Firebase Firestore مع أعلى معايير الأمان</li>
+                    <li><strong>التحكم في الوصول</strong> - الوصول إلى البيانات مقيد بالمستخدمين المصرح لهم فقط</li>
+                    <li><strong>النسخ الاحتياطي</strong> - نقوم بعمل نسخ احتياطية منتظمة للبيانات</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>
+                        <strong>تنبيه:</strong> بياناتك مخزنة بشكل آمن ولا يمكن الوصول إليها إلا من خلال 
+                        نظام المصادقة الخاص بنا.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Data Sharing -->
+            <div class="section">
+                <h2>
+                    <span class="number">5</span>
+                    مشاركة البيانات
+                </h2>
+                <p>
+                    نحن <strong>لا نشارك</strong> بياناتك الشخصية مع أي طرف ثالث تحت أي ظرف، 
+                    باستثناء الحالات التالية:
+                </p>
+                <ul>
+                    <li><strong>بموجب القانون</strong> - إذا طلبت الجهات القانونية ذلك وفقاً للقوانين المصرية</li>
+                    <li><strong>بموافقتك</strong> - إذا وافقت صراحةً على مشاركة بياناتك</li>
+                </ul>
+            </div>
+
+            <!-- User Rights -->
+            <div class="section">
+                <h2>
+                    <span class="number">6</span>
+                    حقوقك كصاحب بيانات
+                </h2>
+                <p>لديك الحقوق التالية فيما يتعلق ببياناتك:</p>
+                <ul>
+                    <li><strong>حق الوصول</strong> - يمكنك الاطلاع على بياناتك في أي وقت</li>
+                    <li><strong>حق التصحيح</strong> - يمكنك طلب تصحيح أي بيانات غير صحيحة</li>
+                    <li><strong>حق الحذف</strong> - يمكنك طلب حذف بياناتك (مع مراعاة القيود القانونية)</li>
+                    <li><strong>حق الاعتراض</strong> - يمكنك الاعتراض على معالجة بياناتك</li>
+                </ul>
+            </div>
+
+            <!-- Cookies -->
+            <div class="section">
+                <h2>
+                    <span class="number">7</span>
+                    ملفات تعريف الارتباط (Cookies)
+                </h2>
+                <p>
+                    نستخدم ملفات تعريف الارتباط لتحسين تجربتك على موقعنا. هذه الملفات آمنة 
+                    ولا تحتوي على معلومات شخصية. يمكنك تعطيلها من خلال إعدادات المتصفح الخاص بك.
+                </p>
+            </div>
+
+            <!-- Contact -->
+            <div class="section">
+                <h2>
+                    <span class="number">8</span>
+                    التواصل معنا
+                </h2>
+                <p>
+                    إذا كان لديك أي استفسار حول سياسة الخصوصية أو بياناتك، يمكنك التواصل معنا:
+                </p>
+                <ul>
+                    <li><strong>البريد الإلكتروني:</strong> support@gam3ety.com</li>
+                    <li><strong>من خلال الموقع:</strong> من صفحة الاتصال</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>
+                        <strong>نلتزم بالرد على استفسارك خلال 48 ساعة عمل.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Updates -->
+            <div class="section">
+                <h2>
+                    <span class="number">9</span>
+                    تحديثات سياسة الخصوصية
+                </h2>
+                <p>
+                    قد نقوم بتحديث هذه السياسة من وقت لآخر. سيتم إعلامك بأي تغييرات جوهرية 
+                    عبر البريد الإلكتروني أو من خلال إشعار على الموقع. ننصحك بمراجعة هذه 
+                    الصفحة بانتظام للاطلاع على أي تحديثات.
+                </p>
+                <p>
+                    <strong>تاريخ آخر تحديث:</strong> 16 يوليو 2026
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-actions">
+                <a href="/" class="btn btn-primary">العودة إلى الصفحة الرئيسية</a>
+                <a href="/login" class="btn btn-outline">دخول الإدمن</a>
+            </div>
+            <p style="margin-top: var(--spacing-md);">
+                جميع الحقوق محفوظة 2026 © <strong>جمعيتي</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ==================== Theme Toggle ====================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        // ==================== Smooth Scroll ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
