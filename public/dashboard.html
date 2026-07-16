@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gam3ety | جمعيتي - لوحة التحكم</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #34D399;
+            --primary-bg: rgba(16, 185, 129, 0.1);
+            --secondary: #1F2937;
+            --secondary-light: #374151;
+            --secondary-dark: #111827;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --bg-primary: #F3F4F6;
+            --bg-secondary: #FFFFFF;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-light: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==================== Dark Mode ==================== */
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --bg-glass: rgba(31, 41, 55, 0.8);
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+
+        /* ==================== Dashboard Layout ==================== */
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ==================== Sidebar ==================== */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+            padding: var(--spacing-lg);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .sidebar-logo h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        .sidebar-nav a .icon {
+            font-size: 20px;
+        }
+
+        .sidebar-footer {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-footer .user-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .sidebar-footer .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .sidebar-footer .user-name {
+            font-weight: 600;
+        }
+
+        .sidebar-footer .user-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== Main Content ==================== */
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+        }
+
+        /* ==================== Top Bar ==================== */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .top-bar h2 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .top-bar-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        /* ==================== Stats Cards ==================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card .stat-icon {
+            font-size: 32px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-card .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-card .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ==================== Table ==================== */
+        .table-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .table-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .table-header-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        thead {
+            background: var(--bg-primary);
+        }
+
+        th {
+            padding: var(--spacing-md) var(--spacing-md);
+            text-align: right;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: var(--spacing-md) var(--spacing-md);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: var(--primary-bg);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+        }
+
+        /* ==================== Buttons ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: 8px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #DC2626;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 12px;
+        }
+
+        .btn-xs {
+            padding: 2px 8px;
+            font-size: 11px;
+        }
+
+        /* ==================== Status Badge ==================== */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-active {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .badge-finished {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .badge-pending {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        /* ==================== Modal ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: var(--spacing-md);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: var(--spacing-xl);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 4px 8px;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+            transform: rotate(90deg);
+        }
+
+        .modal-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .modal-form .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .modal-form input,
+        .modal-form select,
+        .modal-form textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #E5E7EB;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-size: 14px;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .modal-form input:focus,
+        .modal-form select:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-bg);
+        }
+
+        .modal-form textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+        }
+
+        /* ==================== Loading ==================== */
+        .loading-container {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .loading-container.active {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--bg-glass);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==================== Empty State ==================== */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            color: var(--text-secondary);
+        }
+
+        .empty-state .icon {
+            font-size: 64px;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ==================== Animations ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* ==================== Notification ==================== */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-lg);
+            border-right: 4px solid var(--success);
+            z-index: 9999;
+            animation: slideIn 0.3s ease-out;
+            max-width: 400px;
+            font-family: var(--font-family);
+            color: var(--text-primary);
+        }
+
+        .notification-error {
+            border-right-color: var(--danger);
+        }
+
+        .notification-success {
+            border-right-color: var(--success);
+        }
+
+        .notification-info {
+            border-right-color: var(--info);
+        }
+
+        /* ==================== Search ==================== */
+        .search-input {
+            padding: 8px 14px;
+            border: 2px solid #E5E7EB;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-size: 14px;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            min-width: 200px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-bg);
+        }
+
+        /* ==================== Mobile Menu ==================== */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 4px 8px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 99;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ==================== Theme Toggle ==================== */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-primary);
+            padding: 4px 8px;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(100%);
+                right: -280px;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+                right: 0;
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-md);
+                padding: var(--spacing-md);
+            }
+            
+            .top-bar-actions {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal {
+                padding: var(--spacing-lg);
+                margin: var(--spacing-sm);
+            }
+            
+            .modal-form .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-md);
+            }
+            
+            .table-header-actions {
+                flex-direction: column;
+            }
+            
+            .table-header-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-input {
+                width: 100%;
+                min-width: unset;
+            }
+            
+            .notification {
+                left: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: var(--spacing-sm);
+            }
+            
+            .top-bar h2 {
+                font-size: 20px;
+            }
+            
+            .stat-card .stat-number {
+                font-size: 24px;
+            }
+            
+            .table-responsive {
+                padding: 0 var(--spacing-sm) var(--spacing-sm);
+            }
+            
+            th, td {
+                padding: var(--spacing-sm) var(--spacing-sm);
+                font-size: 12px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Overlay (Mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png" alt="Gam3ety Logo">
+                <h1>جمعيتي</h1>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon">📊</span>
+                        لوحة التحكم
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        <span class="icon">🔍</span>
+                        البحث عن عضو
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div>
+                        <div class="user-name" id="userName">الإدمن</div>
+                        <div class="user-role">مدير النظام</div>
+                    </div>
+                </div>
+                <button class="btn btn-danger btn-sm" onclick="handleLogout()" style="width: 100%;">
+                    تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <h2>لوحة التحكم</h2>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        🌙
+                    </button>
+                    <button class="btn btn-primary" onclick="openCreateModal()">
+                        إضافة عضو
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number" id="totalMembers">0</div>
+                    <div class="stat-label">إجمالي الأعضاء</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🟢</div>
+                    <div class="stat-number" id="activeMembers">0</div>
+                    <div class="stat-label">أعضاء نشطون</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔵</div>
+                    <div class="stat-number" id="finishedMembers">0</div>
+                    <div class="stat-label">أعضاء منتهيون</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number" id="totalCollections">0</div>
+                    <div class="stat-label">إجمالي التحصيل</div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>قائمة الأعضاء</h3>
+                    <div class="table-header-actions">
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            placeholder="بحث باسم أو رقم الهاتف..."
+                            oninput="filterMembers()"
+                        >
+                        <button class="btn btn-secondary btn-sm" onclick="refreshData()">تحديث</button>
+                    </div>
+                </div>
+                
+                <div class="loading-container" id="tableLoading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: var(--spacing-md); color: var(--text-secondary);">جاري تحميل البيانات...</p>
+                </div>
+
+                <div class="table-responsive" id="tableContent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الاسم</th>
+                                <th>الهاتف</th>
+                                <th>المبلغ الشهري</th>
+                                <th>المدفوع</th>
+                                <th>المتبقي</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTableBody">
+                            <!-- Rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="memberModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">إضافة عضو جديد</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            
+            <form class="modal-form" id="memberForm" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="editId" value="">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف *</label>
+                        <input type="tel" id="phone" required dir="ltr" pattern="01[0-2][0-9]{8}">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="monthlyPayment">المبلغ الشهري *</label>
+                        <input type="number" id="monthlyPayment" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="gameyaValue">قيمة الجمعية *</label>
+                        <input type="number" id="gameyaValue" required min="0" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="paidAmount">المبلغ المدفوع *</label>
+                        <input type="number" id="paidAmount" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="remainingAmount">المبلغ المتبقي *</label>
+                        <input type="number" id="remainingAmount" required min="0" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="paidMonths">الأشهر المدفوعة *</label>
+                        <input type="number" id="paidMonths" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="remainingMonths">الأشهر المتبقية *</label>
+                        <input type="number" id="remainingMonths" required min="0">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="collectionDate">تاريخ التحصيل *</label>
+                        <input type="date" id="collectionDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="collectionOrder">ترتيب التحصيل *</label>
+                        <input type="number" id="collectionOrder" required min="0">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="receiveAmount">المبلغ المستلم *</label>
+                        <input type="number" id="receiveAmount" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">الحالة *</label>
+                        <select id="status" required>
+                            <option value="نشط">نشط</option>
+                            <option value="منتهي">منتهي</option>
+                            <option value="معلق">معلق</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">ملاحظات</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">إلغاء</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ==================== Global Variables ====================
+        let members = [];
+        let filteredMembers = [];
+
+        // ==================== Theme Toggle ====================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        // ==================== Sidebar Toggle ====================
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        // ==================== Authentication Check ====================
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/login';
+                return false;
+            }
+            return true;
+        }
+
+        // ==================== Get User Info ====================
+        function getUserInfo() {
+            try {
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (user && user.username) {
+                    document.getElementById('userName').textContent = user.username;
+                    document.getElementById('userAvatar').textContent = user.username.charAt(0).toUpperCase();
+                }
+            } catch (e) {
+                console.error('Error getting user info:', e);
+            }
+        }
+
+        // ==================== Logout ====================
+        function handleLogout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = '/login';
+            }
+        }
+
+        // ==================== Load Dashboard ====================
+        async function loadDashboard() {
+            if (!checkAuth()) return;
+            getUserInfo();
+            
+            await loadStats();
+            await loadMembers();
+        }
+
+        // ==================== Load Stats ====================
+        async function loadStats() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('/api/stats', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('totalMembers').textContent = data.totalMembers || 0;
+                    document.getElementById('activeMembers').textContent = data.activeMembers || 0;
+                    document.getElementById('finishedMembers').textContent = data.finishedMembers || 0;
+                    document.getElementById('totalCollections').textContent = 
+                        (data.totalCollections || 0).toLocaleString('ar-EG');
+                } else if (response.status === 401) {
+                    handleLogout();
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                showNotification('حدث خطأ في تحميل الإحصائيات', 'error');
+            }
+        }
+
+        // ==================== Load Members ====================
+        async function loadMembers() {
+            const loading = document.getElementById('tableLoading');
+            const content = document.getElementById('tableContent');
+            
+            loading.classList.add('active');
+            content.style.display = 'none';
+
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('/api/members', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    members = await response.json();
+                    filteredMembers = [...members];
+                    renderTable();
+                } else if (response.status === 401) {
+                    handleLogout();
+                } else {
+                    showNotification('حدث خطأ في تحميل الأعضاء', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading members:', error);
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+            } finally {
+                loading.classList.remove('active');
+                content.style.display = 'block';
+            }
+        }
+
+        // ==================== Render Table ====================
+        function renderTable() {
+            const tbody = document.getElementById('membersTableBody');
+            
+            if (filteredMembers.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8">
+                            <div class="empty-state">
+                                <div class="icon">📋</div>
+                                <h3>لا يوجد أعضاء</h3>
+                                <p>قم بإضافة عضو جديد باستخدام زر "إضافة عضو"</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filteredMembers.map((member, index) => {
+                const statusClass = member.status === 'نشط' ? 'badge-active' : 
+                                   member.status === 'منتهي' ? 'badge-finished' : 'badge-pending';
+                
+                return `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><strong>${member.name || '-'}</strong></td>
+                        <td dir="ltr">${member.phone || '-'}</td>
+                        <td>${(member.monthlyPayment || 0).toLocaleString('ar-EG')} ج.م</td>
+                        <td>${(member.paidAmount || 0).toLocaleString('ar-EG')} ج.م</td>
+                        <td>${(member.remainingAmount || 0).toLocaleString('ar-EG')} ج.م</td>
+                        <td><span class="badge ${statusClass}">${member.status || 'غير معروف'}</span></td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="btn btn-primary btn-xs" onclick="openEditModal('${member.id}')">تعديل</button>
+                                <button class="btn btn-danger btn-xs" onclick="deleteMember('${member.id}')">حذف</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // ==================== Filter Members ====================
+        function filterMembers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                filteredMembers = [...members];
+            } else {
+                filteredMembers = members.filter(member => 
+                    (member.name && member.name.toLowerCase().includes(searchTerm)) ||
+                    (member.phone && member.phone.includes(searchTerm))
+                );
+            }
+            
+            renderTable();
+        }
+
+        // ==================== Refresh Data ====================
+        function refreshData() {
+            loadStats();
+            loadMembers();
+            showNotification('تم تحديث البيانات', 'success');
+        }
+
+        // ==================== Open Create Modal ====================
+        function openCreateModal() {
+            document.getElementById('modalTitle').textContent = 'إضافة عضو جديد';
+            document.getElementById('editId').value = '';
+            document.getElementById('memberForm').reset();
+            document.getElementById('submitBtn').textContent = 'إضافة';
+            document.getElementById('memberModal').classList.add('active');
+        }
+
+        // ==================== Open Edit Modal ====================
+        function openEditModal(id) {
+            const member = members.find(m => m.id === id);
+            if (!member) {
+                showNotification('لم يتم العثور على العضو', 'error');
+                return;
+            }
+
+            document.getElementById('modalTitle').textContent = 'تعديل عضو';
+            document.getElementById('editId').value = id;
+            document.getElementById('name').value = member.name || '';
+            document.getElementById('phone').value = member.phone || '';
+            document.getElementById('monthlyPayment').value = member.monthlyPayment || '';
+            document.getElementById('gameyaValue').value = member.gameyaValue || '';
+            document.getElementById('paidAmount').value = member.paidAmount || '';
+            document.getElementById('remainingAmount').value = member.remainingAmount || '';
+            document.getElementById('paidMonths').value = member.paidMonths || '';
+            document.getElementById('remainingMonths').value = member.remainingMonths || '';
+            document.getElementById('collectionDate').value = member.collectionDate || '';
+            document.getElementById('collectionOrder').value = member.collectionOrder || '';
+            document.getElementById('receiveAmount').value = member.receiveAmount || '';
+            document.getElementById('status').value = member.status || 'نشط';
+            document.getElementById('notes').value = member.notes || '';
+            document.getElementById('submitBtn').textContent = 'تحديث';
+            
+            document.getElementById('memberModal').classList.add('active');
+        }
+
+        // ==================== Close Modal ====================
+        function closeModal() {
+            document.getElementById('memberModal').classList.remove('active');
+            document.getElementById('memberForm').reset();
+        }
+
+        // ==================== Handle Form Submit ====================
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const editId = document.getElementById('editId').value;
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                monthlyPayment: parseFloat(document.getElementById('monthlyPayment').value),
+                gameyaValue: parseFloat(document.getElementById('gameyaValue').value),
+                paidAmount: parseFloat(document.getElementById('paidAmount').value),
+                remainingAmount: parseFloat(document.getElementById('remainingAmount').value),
+                paidMonths: parseInt(document.getElementById('paidMonths').value),
+                remainingMonths: parseInt(document.getElementById('remainingMonths').value),
+                collectionDate: document.getElementById('collectionDate').value,
+                collectionOrder: parseInt(document.getElementById('collectionOrder').value),
+                receiveAmount: parseFloat(document.getElementById('receiveAmount').value),
+                status: document.getElementById('status').value,
+                notes: document.getElementById('notes').value.trim()
+            };
+
+            // Validate
+            for (let key in formData) {
+                if (formData[key] === '' || formData[key] === null || formData[key] === undefined) {
+                    showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                    return;
+                }
+            }
+
+            // Validate phone
+            const phoneRegex = /^01[0-2][0-9]{8}$/;
+            if (!phoneRegex.test(formData.phone)) {
+                showNotification('رقم الهاتف غير صحيح. يجب أن يكون 11 رقم ويبدأ بـ 010، 011، أو 012', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'جاري الحفظ...';
+
+            try {
+                const token = localStorage.getItem('token');
+                const url = editId ? `/api/member/${editId}` : '/api/member';
+                const method = editId ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showNotification(data.message || 'تم الحفظ بنجاح', 'success');
+                    closeModal();
+                    loadMembers();
+                    loadStats();
+                } else {
+                    showNotification(data.error || 'حدث خطأ أثناء الحفظ', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving member:', error);
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = editId ? 'تحديث' : 'إضافة';
+            }
+        }
+
+        // ==================== Delete Member ====================
+        async function deleteMember(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا العضو؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/api/member/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showNotification(data.message || 'تم حذف العضو بنجاح', 'success');
+                    loadMembers();
+                    loadStats();
+                } else {
+                    showNotification(data.error || 'حدث خطأ أثناء الحذف', 'error');
+                }
+            } catch (error) {
+                console.error('Error deleting member:', error);
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // ==================== Notification System ====================
+        function showNotification(message, type = 'info') {
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                border-radius: 8px;
+                background: var(--bg-secondary);
+                box-shadow: var(--shadow-lg);
+                border-right: 4px solid ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+                z-index: 9999;
+                animation: slideIn 0.3s ease-out;
+                max-width: 400px;
+                font-family: var(--font-family);
+                color: var(--text-primary);
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                notification.style.transition = 'all 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // ==================== Close Modal on Click Outside ====================
+        document.getElementById('memberModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ==================== Load on Page Load ====================
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
+</body>
+</html>
