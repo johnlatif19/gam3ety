@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gam3ety | جمعيتي - تسجيل الدخول</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #34D399;
+            --primary-bg: rgba(16, 185, 129, 0.1);
+            --secondary: #1F2937;
+            --secondary-light: #374151;
+            --secondary-dark: #111827;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --bg-primary: #F3F4F6;
+            --bg-secondary: #FFFFFF;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-light: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==================== Dark Mode ==================== */
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --bg-glass: rgba(31, 41, 55, 0.8);
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            background-image: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        /* ==================== Glassmorphism ==================== */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-glass);
+        }
+
+        /* ==================== Container ==================== */
+        .container {
+            max-width: 420px;
+            width: 100%;
+            padding: var(--spacing-xl);
+        }
+
+        /* ==================== Header ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* ==================== Form ==================== */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-size: 15px;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-bg);
+        }
+
+        .form-control.error {
+            border-color: var(--danger);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* ==================== Buttons ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: 12px 32px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== Loading Spinner ==================== */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==================== Animations ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* ==================== Notification ==================== */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-lg);
+            border-right: 4px solid var(--danger);
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-out;
+            max-width: 400px;
+            font-family: var(--font-family);
+            color: var(--text-primary);
+        }
+
+        /* ==================== Theme Toggle ==================== */
+        .theme-toggle {
+            position: fixed;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 480px) {
+            .container {
+                padding: var(--spacing-lg);
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 22px;
+            }
+
+            .form-control {
+                font-size: 14px;
+                padding: 10px 14px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 24px;
+            }
+
+            .theme-toggle {
+                top: var(--spacing-sm);
+                right: var(--spacing-sm);
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+
+            .notification {
+                left: 20px;
+                right: 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        🌙
+    </button>
+
+    <!-- Main Container -->
+    <div class="container glass">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png" alt="Gam3ety Logo">
+                <h1>جمعيتي</h1>
+            </div>
+            <p> تسجيل الدخول إلى لوحة التحكم</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label class="form-label" for="username"> اسم المستخدم</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    class="form-control" 
+                    placeholder="أدخل اسم المستخدم"
+                    required
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password"> كلمة المرور</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="أدخل كلمة المرور"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="loginBtn">
+                 تسجيل الدخول
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="footer">
+            <a href="/"> العودة إلى الصفحة الرئيسية</a>
+            <p style="margin-top: var(--spacing-sm); font-size: 13px;">
+                © 2026 <strong>Gam3ety</strong> | جميع الحقوق محفوظة
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ==================== Theme Toggle ====================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        // ==================== Handle Login ====================
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loginBtn = document.getElementById('loginBtn');
+
+            // Validate inputs
+            if (!username || !password) {
+                showNotification('يرجى ملء جميع الحقول', 'error');
+                if (!username) document.getElementById('username').classList.add('error');
+                if (!password) document.getElementById('password').classList.add('error');
+                return;
+            }
+
+            // Remove error states
+            document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
+
+            // Show loading state
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="spinner"></span> جاري التحميل...';
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store token
+                    localStorage.setItem('token', data.token);
+                    // Store user info
+                    localStorage.setItem('user', JSON.stringify({ username }));
+                    
+                    showNotification('✅ تم تسجيل الدخول بنجاح! جاري التحويل...', 'success');
+                    
+                    // Redirect to dashboard after short delay
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1000);
+                } else {
+                    showNotification(data.error || 'بيانات الدخول غير صحيحة', 'error');
+                    document.querySelector('.container').classList.add('shake');
+                    setTimeout(() => {
+                        document.querySelector('.container').classList.remove('shake');
+                    }, 500);
+                    
+                    // Reset button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '🚀 تسجيل الدخول';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '🚀 تسجيل الدخول';
+            }
+        }
+
+        // ==================== Notification System ====================
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.borderRightColor = type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6';
+
+            document.body.appendChild(notification);
+
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                notification.style.transition = 'all 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // ==================== Enter Key Support ====================
+        document.getElementById('password').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // ==================== Remove error on focus ====================
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.classList.remove('error');
+            });
+        });
+
+        // ==================== Check if already logged in ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                // Verify token validity
+                fetch('/api/members', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('user');
+                    }
+                }).catch(() => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
