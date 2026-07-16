@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gam3ety | جمعيتي</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #34D399;
+            --primary-bg: rgba(16, 185, 129, 0.1);
+            --secondary: #1F2937;
+            --secondary-light: #374151;
+            --secondary-dark: #111827;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --bg-primary: #F3F4F6;
+            --bg-secondary: #FFFFFF;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-light: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==================== Dark Mode ==================== */
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --bg-glass: rgba(31, 41, 55, 0.8);
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            background-image: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        /* ==================== Glassmorphism ==================== */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-glass);
+        }
+
+        /* ==================== Container ==================== */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+        }
+
+        /* ==================== Header ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* ==================== Search Box ==================== */
+        .search-box {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            direction: ltr;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-bg);
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* ==================== Buttons ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: 12px 32px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        /* ==================== Member Card ==================== */
+        .member-card {
+            display: none;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .member-card.active {
+            display: block;
+        }
+
+        .member-card .member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--primary-bg);
+        }
+
+        .member-card .member-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .member-card .member-phone {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .member-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .member-info-item {
+            display: flex;
+            flex-direction: column;
+            padding: var(--spacing-md);
+            background: var(--primary-bg);
+            border-radius: var(--radius-sm);
+        }
+
+        .member-info-item .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .member-info-item .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: var(--spacing-xs);
+        }
+
+        .member-info-item .value.success {
+            color: var(--success);
+        }
+
+        .member-info-item .value.danger {
+            color: var(--danger);
+        }
+
+        .member-info-item .value.warning {
+            color: var(--warning);
+        }
+
+        /* ==================== Status Badge ==================== */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .badge-active {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .badge-finished {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .badge-pending {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        /* ==================== Not Found ==================== */
+        .not-found {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .not-found.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .not-found .icon {
+            font-size: 64px;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.5;
+        }
+
+        .not-found h3 {
+            font-size: 24px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .not-found p {
+            color: var(--text-secondary);
+            margin-top: var(--spacing-sm);
+        }
+
+        /* ==================== Loading ==================== */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--bg-glass);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==================== Animations ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== Footer ==================== */
+        .footer {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        /* ==================== Dark Mode Toggle ==================== */
+        .theme-toggle {
+            position: fixed;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--bg-glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .logo img {
+                height: 45px;
+            }
+
+            .logo h1 {
+                font-size: 24px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box input {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .member-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-card .member-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .footer-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .theme-toggle {
+                top: var(--spacing-sm);
+                right: var(--spacing-sm);
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 20px;
+            }
+
+            .member-card {
+                padding: var(--spacing-md);
+            }
+
+            .member-info-item .value {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        🌙
+    </button>
+
+    <!-- Main Container -->
+    <div class="container glass">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png" alt="Gam3ety Logo">
+                <h1>جمعيتي</h1>
+            </div>
+            <p>أدخل رقم الهاتف للبحث عن عضو في الجمعية</p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input 
+                type="tel" 
+                id="phoneInput" 
+                placeholder="رقم الهاتف"
+                dir="ltr"
+                autocomplete="tel"
+            >
+            <button class="btn btn-primary" onclick="searchMember()">
+                بحث
+            </button>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: var(--spacing-md); color: var(--text-secondary);">جاري البحث...</p>
+        </div>
+
+        <!-- Not Found -->
+        <div class="not-found" id="notFound">
+            <div class="icon">🔍</div>
+            <h3>لا يوجد عضو</h3>
+            <p>لم نجد أي عضو مسجل بهذا الرقم</p>
+        </div>
+
+        <!-- Member Card -->
+        <div class="member-card" id="memberCard">
+            <div class="member-header">
+                <div>
+                    <div class="member-name" id="memberName">-</div>
+                    <div class="member-phone" id="memberPhone">-</div>
+                </div>
+                <div id="memberStatus">-</div>
+            </div>
+
+            <div class="member-info-grid">
+                <div class="member-info-item">
+                    <span class="label">المبلغ الشهري</span>
+                    <span class="value" id="monthlyPayment">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">قيمة الجمعية</span>
+                    <span class="value" id="gameyaValue">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">المبلغ المدفوع</span>
+                    <span class="value success" id="paidAmount">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">المبلغ المتبقي</span>
+                    <span class="value danger" id="remainingAmount">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">الأشهر المدفوعة</span>
+                    <span class="value" id="paidMonths">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">الأشهر المتبقية</span>
+                    <span class="value" id="remainingMonths">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">تاريخ التحصيل</span>
+                    <span class="value" id="collectionDate">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">ترتيب التحصيل</span>
+                    <span class="value" id="collectionOrder">-</span>
+                </div>
+                <div class="member-info-item" style="grid-column: 1 / -1;">
+                    <span class="label">المبلغ المستلم</span>
+                    <span class="value success" id="receiveAmount">-</span>
+                </div>
+                <div class="member-info-item" style="grid-column: 1 / -1;">
+                    <span class="label">ملاحظات</span>
+                    <span class="value" id="notes" style="font-size: 14px; font-weight: 400;">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-actions">
+                <a href="/privacy-policy" class="btn btn-outline btn-sm">سياسة الخصوصية</a>
+            </div>
+            <p style="margin-top: var(--spacing-md);">
+                جميع الحقوق محفوظة 2026 © <strong>جمعيتي</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ==================== Theme Toggle ====================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        // ==================== Search Member ====================
+        async function searchMember() {
+            const phoneInput = document.getElementById('phoneInput');
+            const phone = phoneInput.value.trim();
+
+            // Validate phone number
+            if (!phone) {
+                showNotification('يرجى إدخال رقم الهاتف', 'error');
+                phoneInput.focus();
+                return;
+            }
+
+            // Validate Egyptian phone number
+            const phoneRegex = /^01[0-2][0-9]{8}$/;
+            if (!phoneRegex.test(phone)) {
+                showNotification('رقم الهاتف غير صحيح. يجب أن يكون 11 رقم ويبدأ بـ 010، 011، أو 012', 'error');
+                phoneInput.focus();
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('memberCard').classList.remove('active');
+            document.getElementById('notFound').classList.remove('active');
+
+            try {
+                const response = await fetch(`/api/member/${phone}`);
+                const data = await response.json();
+
+                // Hide loading
+                document.getElementById('loading').classList.remove('active');
+
+                if (response.ok) {
+                    displayMember(data);
+                } else if (response.status === 404) {
+                    document.getElementById('notFound').classList.add('active');
+                } else {
+                    showNotification(data.error || 'حدث خطأ أثناء البحث', 'error');
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                document.getElementById('loading').classList.remove('active');
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // ==================== Display Member ====================
+        function displayMember(member) {
+            document.getElementById('memberName').textContent = member.name || '-';
+            document.getElementById('memberPhone').textContent = member.phone || '-';
+
+            // Status badge
+            const statusBadge = document.getElementById('memberStatus');
+            const status = member.status || 'غير معروف';
+            let badgeClass = 'badge';
+            if (status === 'نشط') badgeClass += ' badge-active';
+            else if (status === 'منتهي') badgeClass += ' badge-finished';
+            else badgeClass += ' badge-pending';
+            statusBadge.innerHTML = `<span class="${badgeClass}">${status}</span>`;
+
+            // Format currency
+            const formatCurrency = (amount) => {
+                if (!amount && amount !== 0) return '-';
+                return `${Number(amount).toLocaleString('ar-EG')} ج.م`;
+            };
+
+            document.getElementById('monthlyPayment').textContent = formatCurrency(member.monthlyPayment);
+            document.getElementById('gameyaValue').textContent = formatCurrency(member.gameyaValue);
+            document.getElementById('paidAmount').textContent = formatCurrency(member.paidAmount);
+            document.getElementById('remainingAmount').textContent = formatCurrency(member.remainingAmount);
+            document.getElementById('paidMonths').textContent = member.paidMonths || 0;
+            document.getElementById('remainingMonths').textContent = member.remainingMonths || 0;
+            document.getElementById('collectionDate').textContent = member.collectionDate || '-';
+            document.getElementById('collectionOrder').textContent = member.collectionOrder || '-';
+            document.getElementById('receiveAmount').textContent = formatCurrency(member.receiveAmount);
+            document.getElementById('notes').textContent = member.notes || 'لا توجد ملاحظات';
+
+            // Show card
+            document.getElementById('memberCard').classList.add('active');
+        }
+
+        // ==================== Notification System ====================
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                border-radius: 8px;
+                background: var(--bg-secondary);
+                box-shadow: var(--shadow-lg);
+                border-right: 4px solid ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+                z-index: 9999;
+                animation: fadeIn 0.3s ease-out;
+                max-width: 400px;
+                font-family: var(--font-family);
+                color: var(--text-primary);
+            `;
+
+            document.body.appendChild(notification);
+
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                notification.style.transition = 'all 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // ==================== Enter Key Support ====================
+        document.getElementById('phoneInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchMember();
+            }
+        });
+
+        // ==================== Auto-focus ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('phoneInput').focus();
+        });
+
+        // ==================== Phone Input Formatting ====================
+        document.getElementById('phoneInput').addEventListener('input', function(e) {
+            // Remove any non-digit characters
+            this.value = this.value.replace(/\D/g, '');
+            // Limit to 11 digits
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
+    </script>
+</body>
+</html>
