@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gam3ety | جمعيتي - لوحة التحكم</title>
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
     <style>
         /* ==================== CSS Variables ==================== */
         :root {
@@ -193,6 +193,8 @@
             backdrop-filter: blur(10px);
             border-radius: var(--radius-md);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
         }
 
         .top-bar h2 {
@@ -204,6 +206,7 @@
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
         /* ==================== Stats Cards ==================== */
@@ -283,7 +286,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px;
+            min-width: 900px;
         }
 
         thead {
@@ -291,7 +294,7 @@
         }
 
         th {
-            padding: var(--spacing-md) var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-sm);
             text-align: right;
             font-weight: 600;
             font-size: 12px;
@@ -303,10 +306,10 @@
         }
 
         td {
-            padding: var(--spacing-md) var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-sm);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             vertical-align: middle;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         tr:hover {
@@ -447,7 +450,7 @@
         .modal {
             background: var(--bg-secondary);
             border-radius: var(--radius-lg);
-            max-width: 700px;
+            max-width: 750px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -726,18 +729,26 @@
                 padding: var(--spacing-md);
             }
             
+            .top-bar h2 {
+                font-size: 20px;
+            }
+            
             .top-bar-actions {
-                flex-wrap: wrap;
                 justify-content: space-between;
             }
             
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .stat-card .stat-number {
+                font-size: 24px;
             }
             
             .modal {
                 padding: var(--spacing-lg);
                 margin: var(--spacing-sm);
+                max-width: 100%;
             }
             
             .modal-form .form-row {
@@ -767,6 +778,16 @@
             .notification {
                 left: 20px;
                 right: 20px;
+                max-width: calc(100% - 40px);
+            }
+            
+            table {
+                min-width: 700px;
+            }
+            
+            th, td {
+                padding: var(--spacing-sm) var(--spacing-xs);
+                font-size: 12px;
             }
         }
 
@@ -776,11 +797,24 @@
             }
             
             .top-bar h2 {
-                font-size: 20px;
+                font-size: 18px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-sm);
+            }
+            
+            .stat-card {
+                padding: var(--spacing-md);
             }
             
             .stat-card .stat-number {
-                font-size: 24px;
+                font-size: 20px;
+            }
+            
+            .stat-card .stat-label {
+                font-size: 12px;
             }
             
             .table-responsive {
@@ -788,8 +822,12 @@
             }
             
             th, td {
-                padding: var(--spacing-sm) var(--spacing-sm);
-                font-size: 12px;
+                padding: var(--spacing-xs) var(--spacing-xs);
+                font-size: 11px;
+            }
+            
+            .modal {
+                padding: var(--spacing-md);
             }
             
             .modal-actions {
@@ -798,6 +836,11 @@
             
             .modal-actions .btn {
                 width: 100%;
+            }
+            
+            .btn-xs {
+                padding: 2px 6px;
+                font-size: 10px;
             }
         }
     </style>
@@ -917,6 +960,10 @@
                                 <th>المبلغ الشهري</th>
                                 <th>المدفوع</th>
                                 <th>المتبقي</th>
+                                <th>المبلغ المستلم</th>
+                                <th>دور الاستلام</th>
+                                <th>تاريخ الاستلام</th>
+                                <th>المتبقي للاسم</th>
                                 <th>الحالة</th>
                                 <th>الإجراءات</th>
                             </tr>
@@ -987,20 +1034,27 @@
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="collectionDate">تاريخ التحصيل *</label>
-                        <input type="date" id="collectionDate" required>
+                        <label for="receiveAmount">المبلغ المستلم *</label>
+                        <input type="number" id="receiveAmount" required min="0" step="0.01">
                     </div>
                     <div class="form-group">
-                        <label for="collectionOrder">ترتيب التحصيل *</label>
-                        <input type="number" id="collectionOrder" required min="0">
+                        <label for="collectionOrder">دور الاستلام *</label>
+                        <input type="text" id="collectionOrder" required placeholder="مثال: الأول, الثاني, الثالث">
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="receiveAmount">المبلغ المستلم *</label>
-                        <input type="number" id="receiveAmount" required min="0" step="0.01">
+                        <label for="collectionDate">تاريخ الاستلام *</label>
+                        <input type="date" id="collectionDate" required>
                     </div>
+                    <div class="form-group">
+                        <label for="remainingName">المتبقي للاسم *</label>
+                        <input type="text" id="remainingName" required placeholder="اسم العضو المتبقي">
+                    </div>
+                </div>
+                
+                <div class="form-row">
                     <div class="form-group">
                         <label for="status">الحالة *</label>
                         <select id="status" required>
@@ -1165,7 +1219,7 @@
             if (filteredMembers.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="8">
+                        <td colspan="12">
                             <div class="empty-state">
                                 <div class="icon">📋</div>
                                 <h3>لا يوجد أعضاء</h3>
@@ -1189,6 +1243,10 @@
                         <td>${(member.monthlyPayment || 0).toLocaleString('ar-EG')} ج.م</td>
                         <td>${(member.paidAmount || 0).toLocaleString('ar-EG')} ج.م</td>
                         <td>${(member.remainingAmount || 0).toLocaleString('ar-EG')} ج.م</td>
+                        <td>${(member.receiveAmount || 0).toLocaleString('ar-EG')} ج.م</td>
+                        <td>${member.collectionOrder || '-'}</td>
+                        <td>${member.collectionDate || '-'}</td>
+                        <td>${member.remainingName || '-'}</td>
                         <td><span class="badge ${statusClass}">${member.status || 'غير معروف'}</span></td>
                         <td>
                             <div class="table-actions">
@@ -1251,9 +1309,10 @@
             document.getElementById('remainingAmount').value = member.remainingAmount || '';
             document.getElementById('paidMonths').value = member.paidMonths || '';
             document.getElementById('remainingMonths').value = member.remainingMonths || '';
-            document.getElementById('collectionDate').value = member.collectionDate || '';
-            document.getElementById('collectionOrder').value = member.collectionOrder || '';
             document.getElementById('receiveAmount').value = member.receiveAmount || '';
+            document.getElementById('collectionOrder').value = member.collectionOrder || '';
+            document.getElementById('collectionDate').value = member.collectionDate || '';
+            document.getElementById('remainingName').value = member.remainingName || '';
             document.getElementById('status').value = member.status || 'نشط';
             document.getElementById('notes').value = member.notes || '';
             document.getElementById('submitBtn').textContent = 'تحديث';
@@ -1281,9 +1340,10 @@
                 remainingAmount: parseFloat(document.getElementById('remainingAmount').value),
                 paidMonths: parseInt(document.getElementById('paidMonths').value),
                 remainingMonths: parseInt(document.getElementById('remainingMonths').value),
-                collectionDate: document.getElementById('collectionDate').value,
-                collectionOrder: parseInt(document.getElementById('collectionOrder').value),
                 receiveAmount: parseFloat(document.getElementById('receiveAmount').value),
+                collectionOrder: document.getElementById('collectionOrder').value.trim(),
+                collectionDate: document.getElementById('collectionDate').value,
+                remainingName: document.getElementById('remainingName').value.trim(),
                 status: document.getElementById('status').value,
                 notes: document.getElementById('notes').value.trim()
             };
