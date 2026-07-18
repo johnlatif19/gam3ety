@@ -42,7 +42,7 @@ app.use(helmet({
 
 // CORS
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? 'https://your-domain.vercel.app' : 'http://localhost:3000',
+  origin: process.env.NODE_ENV === 'production' ? 'https://gam3ety.vercel.app' : 'http://localhost:3000',
   credentials: true
 }));
 
@@ -87,7 +87,7 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-// التحقق من صحة البيانات
+// ==================== التحقق من صحة البيانات (محدث) ====================
 const validateMember = [
   body('name').trim().notEmpty().withMessage('الاسم مطلوب'),
   body('phone').trim().notEmpty().withMessage('رقم الهاتف مطلوب'),
@@ -97,9 +97,10 @@ const validateMember = [
   body('remainingAmount').isNumeric().withMessage('المبلغ المتبقي يجب أن يكون رقم'),
   body('paidMonths').isInt({ min: 0 }).withMessage('الأشهر المدفوعة يجب أن تكون عدد صحيح'),
   body('remainingMonths').isInt({ min: 0 }).withMessage('الأشهر المتبقية يجب أن تكون عدد صحيح'),
-  body('collectionDate').trim().notEmpty().withMessage('تاريخ التحصيل مطلوب'),
-  body('collectionOrder').isInt({ min: 0 }).withMessage('ترتيب التحصيل يجب أن يكون عدد صحيح'),
   body('receiveAmount').isNumeric().withMessage('المبلغ المستلم يجب أن يكون رقم'),
+  body('collectionOrder').trim().notEmpty().withMessage('دور الاستلام مطلوب'),
+  body('collectionDate').trim().notEmpty().withMessage('تاريخ الاستلام مطلوب'),
+  body('remainingName').trim().notEmpty().withMessage('المتبقي للاسم مطلوب'),
   body('status').trim().notEmpty().withMessage('الحالة مطلوبة'),
 ];
 
