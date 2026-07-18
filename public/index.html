@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gam3ety | جمعيتي</title>
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
     <style>
         /* ==================== CSS Variables ==================== */
         :root {
@@ -559,16 +559,20 @@
                     <span class="value" id="remainingMonths">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">تاريخ التحصيل</span>
+                    <span class="label">المبلغ المستلم</span>
+                    <span class="value success" id="receiveAmount">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">دور الاستلام</span>
+                    <span class="value" id="collectionOrder">-</span>
+                </div>
+                <div class="member-info-item">
+                    <span class="label">تاريخ الاستلام</span>
                     <span class="value" id="collectionDate">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">ترتيب التحصيل</span>
-                    <span class="value" id="collectionOrder">-</span>
-                </div>
-                <div class="member-info-item" style="grid-column: 1 / -1;">
-                    <span class="label">المبلغ المستلم</span>
-                    <span class="value success" id="receiveAmount">-</span>
+                    <span class="label">المتبقي للاسم</span>
+                    <span class="value" id="remainingName">-</span>
                 </div>
                 <div class="member-info-item" style="grid-column: 1 / -1;">
                     <span class="label">ملاحظات</span>
@@ -681,9 +685,10 @@
             document.getElementById('remainingAmount').textContent = formatCurrency(member.remainingAmount);
             document.getElementById('paidMonths').textContent = member.paidMonths || 0;
             document.getElementById('remainingMonths').textContent = member.remainingMonths || 0;
-            document.getElementById('collectionDate').textContent = member.collectionDate || '-';
-            document.getElementById('collectionOrder').textContent = member.collectionOrder || '-';
             document.getElementById('receiveAmount').textContent = formatCurrency(member.receiveAmount);
+            document.getElementById('collectionOrder').textContent = member.collectionOrder || '-';
+            document.getElementById('collectionDate').textContent = member.collectionDate || '-';
+            document.getElementById('remainingName').textContent = member.remainingName || '-';
             document.getElementById('notes').textContent = member.notes || 'لا توجد ملاحظات';
 
             // Show card
