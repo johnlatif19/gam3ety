@@ -3,57 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gam3ety | جمعيتي</title>
+    <title>جمعيتي | Gam3ety</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ==================== CSS Variables ==================== */
+        /* ============================================================
+               ROOT VARIABLES - نظام ألوان عصري ومتجانس
+               ============================================================ */
         :root {
-            --primary: #10B981;
-            --primary-dark: #059669;
-            --primary-light: #34D399;
-            --primary-bg: rgba(16, 185, 129, 0.1);
-            --secondary: #1F2937;
-            --secondary-light: #374151;
-            --secondary-dark: #111827;
-            --success: #10B981;
-            --danger: #EF4444;
-            --warning: #F59E0B;
+            --primary: #0F2B3D;
+            --primary-light: #1A4058;
+            --primary-dark: #091E2A;
+            --accent: #F59E0B;
+            --accent-light: #FBBF24;
+            --accent-soft: rgba(245, 158, 11, 0.12);
+            --success: #0E8F6B;
+            --success-soft: rgba(14, 143, 107, 0.12);
+            --danger: #D05A5A;
+            --danger-soft: rgba(208, 90, 90, 0.12);
             --info: #3B82F6;
-            --bg-primary: #F3F4F6;
-            --bg-secondary: #FFFFFF;
-            --bg-glass: rgba(255, 255, 255, 0.7);
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-light: #FFFFFF;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
+            --info-soft: rgba(59, 130, 246, 0.12);
+
+            --bg-body: #F0F2F5;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --bg-glass: rgba(255, 255, 255, 0.55);
+            --bg-input: #FFFFFF;
+
+            --text-primary: #0B1A2E;
+            --text-secondary: #4B5B6E;
+            --text-muted: #8896A8;
+            --text-white: #FFFFFF;
+
+            --border-light: #E9EDF4;
+            --border-focus: var(--primary);
+
+            --shadow-sm: 0 2px 8px rgba(11, 26, 46, 0.06);
+            --shadow-md: 0 8px 30px rgba(11, 26, 46, 0.08);
+            --shadow-lg: 0 20px 60px rgba(11, 26, 46, 0.12);
+            --shadow-xl: 0 30px 80px rgba(11, 26, 46, 0.16);
+
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+
             --spacing-xs: 4px;
             --spacing-sm: 8px;
             --spacing-md: 16px;
             --spacing-lg: 24px;
             --spacing-xl: 32px;
             --spacing-2xl: 48px;
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --spacing-3xl: 64px;
+
+            --font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ==================== Dark Mode ==================== */
+        /* ============================================================
+               DARK MODE
+               ============================================================ */
         [data-theme="dark"] {
-            --bg-primary: #111827;
-            --bg-secondary: #1F2937;
-            --bg-glass: rgba(31, 41, 55, 0.8);
-            --text-primary: #F9FAFB;
-            --text-secondary: #9CA3AF;
-            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --bg-body: #0F1724;
+            --bg-card: rgba(22, 34, 50, 0.85);
+            --bg-glass: rgba(18, 28, 42, 0.75);
+            --bg-input: rgba(31, 46, 66, 0.8);
+
+            --text-primary: #F1F5F9;
+            --text-secondary: #B0C4DB;
+            --text-muted: #7B8DA3;
+
+            --border-light: #2A3A52;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.6);
         }
 
-        /* ==================== Reset & Base ==================== */
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -62,125 +95,227 @@
 
         body {
             font-family: var(--font-family);
-            background: var(--bg-primary);
+            background: var(--bg-body);
             color: var(--text-primary);
-            line-height: 1.6;
-            transition: var(--transition);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: var(--spacing-md);
-            background-image: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-                              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            transition: var(--transition-slow);
+            background-image:
+                radial-gradient(ellipse at 15% 20%, rgba(15, 43, 61, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 60%);
         }
 
-        /* ==================== Glassmorphism ==================== */
-        .glass {
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+        [data-theme="dark"] body {
+            background-image:
+                radial-gradient(ellipse at 15% 20%, rgba(26, 64, 88, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
+        }
+
+        /* ============================================================
+               GLASSMORPHISM CARD
+               ============================================================ */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(24px) saturate(1.2);
+            -webkit-backdrop-filter: blur(24px) saturate(1.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-glass);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-slow);
         }
 
-        /* ==================== Container ==================== */
+        .glass-card:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        [data-theme="dark"] .glass-card {
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        /* ============================================================
+               CONTAINER
+               ============================================================ */
         .container {
-            max-width: 800px;
+            max-width: 860px;
             width: 100%;
             margin: 0 auto;
             padding: var(--spacing-xl);
+            position: relative;
         }
 
-        /* ==================== Header ==================== */
+        /* ============================================================
+               HEADER
+               ============================================================ */
         .header {
             text-align: center;
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
         }
 
-        .logo {
+        .logo-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
         }
 
-        .logo img {
-            height: 60px;
+        .logo-wrapper img {
+            height: 56px;
             width: auto;
+            filter: drop-shadow(0 4px 12px rgba(15, 43, 61, 0.08));
+            transition: var(--transition);
         }
 
-        .logo h1 {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--primary);
+        [data-theme="dark"] .logo-wrapper img {
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
         }
 
-        .header p {
+        .logo-wrapper h1 {
+            font-size: 34px;
+            font-weight: 900;
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
             color: var(--text-secondary);
             font-size: 16px;
+            font-weight: 500;
+            margin-top: var(--spacing-xs);
         }
 
-        /* ==================== Search Box ==================== */
+        .header .subtitle i {
+            color: var(--accent);
+            margin: 0 4px;
+        }
+
+        /* ============================================================
+               SEARCH BOX - تصميم مميز
+               ============================================================ */
         .search-box {
             display: flex;
             gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+        }
+
+        .search-box .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box .input-wrapper .input-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 18px;
+            pointer-events: none;
+            transition: var(--transition);
         }
 
         .search-box input {
-            flex: 1;
-            padding: 14px 20px;
-            border: 2px solid #E5E7EB;
-            border-radius: var(--radius-sm);
+            width: 100%;
+            padding: 16px 52px 16px 20px;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
             font-family: var(--font-family);
             font-size: 16px;
             transition: var(--transition);
-            background: var(--bg-secondary);
+            background: var(--bg-input);
             color: var(--text-primary);
             direction: ltr;
+            font-weight: 500;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
         .search-box input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--primary-bg);
+            box-shadow: 0 0 0 4px rgba(15, 43, 61, 0.08);
+            transform: translateY(-1px);
         }
 
-        .search-box input::placeholder {
-            color: var(--text-secondary);
+        [data-theme="dark"] .search-box input:focus {
+            box-shadow: 0 0 0 4px rgba(26, 64, 88, 0.25);
         }
 
-        /* ==================== Buttons ==================== */
+        .search-box input:focus~.input-icon,
+        .search-box input:focus+.input-icon {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+               BUTTONS - تصميم عصري
+               ============================================================ */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: var(--spacing-sm);
-            padding: 12px 32px;
+            padding: 16px 36px;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-md);
             font-family: var(--font-family);
-            font-weight: 600;
+            font-weight: 700;
             font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
             white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0);
+            transition: var(--transition);
+        }
+
+        .btn:hover::after {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn-primary {
             background: var(--primary);
-            color: white;
+            color: var(--text-white);
+            box-shadow: 0 4px 16px rgba(15, 43, 61, 0.2);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 8px 28px rgba(15, 43, 61, 0.3);
+            background: var(--primary-light);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text-primary);
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(245, 158, 11, 0.35);
+            background: var(--accent-light);
         }
 
         .btn-outline {
@@ -191,192 +326,306 @@
 
         .btn-outline:hover {
             background: var(--primary);
-            color: white;
+            color: var(--text-white);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-sm {
-            padding: 8px 16px;
+            padding: 8px 20px;
             font-size: 13px;
+            border-radius: var(--radius-sm);
         }
 
-        /* ==================== Member Card ==================== */
+        .btn-icon {
+            font-size: 20px;
+        }
+
+        /* ============================================================
+               MEMBER CARD - تصميم بطاقة العضو
+               ============================================================ */
         .member-card {
             display: none;
             padding: var(--spacing-xl);
             margin-top: var(--spacing-lg);
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeSlideUp 0.5s ease-out;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow-md);
         }
 
         .member-card.active {
             display: block;
         }
 
-        .member-card .member-header {
+        [data-theme="dark"] .member-card {
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Member Header */
+        .member-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: var(--spacing-lg);
-            padding-bottom: var(--spacing-md);
-            border-bottom: 2px solid var(--primary-bg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 2px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
         }
 
-        .member-card .member-name {
+        .member-name-section {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .member-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(15, 43, 61, 0.15);
         }
 
-        .member-card .member-phone {
+        [data-theme="dark"] .member-avatar {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .member-phone {
             color: var(--text-secondary);
             font-size: 14px;
+            font-weight: 500;
+            direction: ltr;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
+        .member-phone i {
+            color: var(--accent);
+        }
+
+        /* Status Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .badge-active {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        .badge-active::before {
+            background: var(--success);
+        }
+
+        .badge-finished {
+            background: var(--info-soft);
+            color: var(--info);
+        }
+        .badge-finished::before {
+            background: var(--info);
+        }
+
+        .badge-pending {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        .badge-pending::before {
+            background: var(--accent);
+        }
+
+        /* Member Info Grid */
         .member-info-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--spacing-md);
         }
 
         .member-info-item {
             display: flex;
             flex-direction: column;
-            padding: var(--spacing-md);
-            background: var(--primary-bg);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-glass);
             border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .member-info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .member-info-item {
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         .member-info-item .label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .member-info-item .value {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
             color: var(--text-primary);
             margin-top: var(--spacing-xs);
+            font-feature-settings: "tnum";
         }
 
         .member-info-item .value.success {
             color: var(--success);
         }
-
         .member-info-item .value.danger {
             color: var(--danger);
         }
-
         .member-info-item .value.warning {
-            color: var(--warning);
+            color: var(--accent);
         }
 
-        /* ==================== Status Badge ==================== */
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
+        .member-info-item.full-width {
+            grid-column: 1 / -1;
         }
 
-        .badge-active {
-            background: #D1FAE5;
-            color: #065F46;
+        .member-info-item .notes-text {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        .badge-finished {
-            background: #DBEAFE;
-            color: #1E40AF;
-        }
-
-        .badge-pending {
-            background: #FEF3C7;
-            color: #92400E;
-        }
-
-        /* ==================== Not Found ==================== */
+        /* ============================================================
+               NOT FOUND
+               ============================================================ */
         .not-found {
             display: none;
             text-align: center;
-            padding: var(--spacing-xl);
+            padding: var(--spacing-2xl) var(--spacing-xl);
             margin-top: var(--spacing-lg);
+            animation: fadeSlideUp 0.5s ease-out;
         }
 
         .not-found.active {
             display: block;
-            animation: fadeIn 0.5s ease-out;
         }
 
-        .not-found .icon {
-            font-size: 64px;
-            margin-bottom: var(--spacing-md);
-            opacity: 0.5;
+        .not-found .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-md);
+            font-size: 36px;
+            border: 2px dashed var(--border-light);
         }
 
         .not-found h3 {
             font-size: 24px;
-            color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .not-found p {
             color: var(--text-secondary);
             margin-top: var(--spacing-sm);
+            font-size: 16px;
         }
 
-        /* ==================== Loading ==================== */
+        /* ============================================================
+               LOADING
+               ============================================================ */
         .loading {
             display: none;
             text-align: center;
-            padding: var(--spacing-xl);
+            padding: var(--spacing-2xl) var(--spacing-xl);
         }
 
         .loading.active {
             display: block;
+            animation: fadeSlideUp 0.3s ease-out;
         }
 
         .spinner {
             display: inline-block;
-            width: 48px;
-            height: 48px;
-            border: 4px solid var(--bg-glass);
-            border-top: 4px solid var(--primary);
+            width: 52px;
+            height: 52px;
+            border: 4px solid var(--border-light);
+            border-top-color: var(--primary);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        /* ==================== Animations ==================== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .loading p {
+            margin-top: var(--spacing-md);
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        /* ==================== Footer ==================== */
+        /* ============================================================
+               FOOTER
+               ============================================================ */
         .footer {
             text-align: center;
-            margin-top: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
             padding-top: var(--spacing-lg);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid var(--border-light);
             color: var(--text-secondary);
             font-size: 14px;
-        }
-
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
         }
 
         .footer-actions {
@@ -384,70 +633,235 @@
             justify-content: center;
             gap: var(--spacing-md);
             margin-top: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
-        /* ==================== Dark Mode Toggle ==================== */
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        .footer .copyright {
+            margin-top: var(--spacing-md);
+            font-weight: 500;
+        }
+
+        .footer .copyright strong {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+               THEME TOGGLE - زر مميز
+               ============================================================ */
         .theme-toggle {
             position: fixed;
             top: var(--spacing-md);
-            right: var(--spacing-md);
-            background: var(--bg-glass);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            font-size: 20px;
+            left: var(--spacing-md);
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
             cursor: pointer;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-primary);
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
+            transform: scale(1.08) rotate(8deg);
             box-shadow: var(--shadow-md);
         }
 
-        /* ==================== Responsive ==================== */
+        .theme-toggle:active {
+            transform: scale(0.92);
+        }
+
+        /* ============================================================
+               NOTIFICATION - منبثق جميل
+               ============================================================ */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 28px;
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-xl);
+            border-right: 5px solid var(--success);
+            z-index: 9999;
+            max-width: 420px;
+            font-family: var(--font-family);
+            color: var(--text-primary);
+            font-weight: 500;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification i {
+            font-size: 22px;
+        }
+
+        .notification-success {
+            border-right-color: var(--success);
+        }
+        .notification-success i {
+            color: var(--success);
+        }
+
+        .notification-error {
+            border-right-color: var(--danger);
+        }
+        .notification-error i {
+            color: var(--danger);
+        }
+
+        .notification-info {
+            border-right-color: var(--info);
+        }
+        .notification-info i {
+            color: var(--info);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ============================================================
+               RESPONSIVE - متجاوب مع جميع الشاشات
+               ============================================================ */
+
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .container {
+                padding: var(--spacing-2xl);
+            }
+        }
+
+        /* Tablets & small laptops */
+        @media (max-width: 992px) {
+            .member-info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .member-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Mobile devices */
         @media (max-width: 768px) {
+            body {
+                padding: var(--spacing-sm);
+            }
+
             .container {
                 padding: var(--spacing-md);
             }
 
-            .logo img {
-                height: 45px;
+            .logo-wrapper img {
+                height: 42px;
             }
 
-            .logo h1 {
-                font-size: 24px;
+            .logo-wrapper h1 {
+                font-size: 26px;
+            }
+
+            .header .subtitle {
+                font-size: 14px;
             }
 
             .search-box {
                 flex-direction: column;
+                gap: var(--spacing-sm);
             }
 
             .search-box input {
-                font-size: 14px;
-                padding: 12px 16px;
+                padding: 14px 44px 14px 16px;
+                font-size: 15px;
             }
 
             .btn {
+                padding: 14px 24px;
+                font-size: 15px;
                 width: 100%;
                 justify-content: center;
             }
 
-            .member-info-grid {
-                grid-template-columns: 1fr;
+            .member-card {
+                padding: var(--spacing-md);
             }
 
-            .member-card .member-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .member-name-section .member-avatar {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .member-name {
+                font-size: 20px;
+            }
+
+            .member-info-grid {
+                grid-template-columns: 1fr 1fr;
                 gap: var(--spacing-sm);
+            }
+
+            .member-info-item {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .member-info-item .value {
+                font-size: 16px;
+            }
+
+            .member-info-item.full-width {
+                grid-column: 1 / -1;
+            }
+
+            .badge {
+                font-size: 12px;
+                padding: 6px 14px;
+            }
+
+            .theme-toggle {
+                top: var(--spacing-sm);
+                left: var(--spacing-sm);
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .notification {
+                right: 16px;
+                left: 16px;
+                bottom: 16px;
+                max-width: calc(100% - 32px);
+                padding: 14px 20px;
+                font-size: 14px;
             }
 
             .footer-actions {
@@ -455,87 +869,234 @@
                 align-items: center;
             }
 
-            .theme-toggle {
-                top: var(--spacing-sm);
-                right: var(--spacing-sm);
-                width: 38px;
-                height: 38px;
-                font-size: 16px;
+            .footer-actions .btn {
+                width: 100%;
+                max-width: 280px;
             }
         }
 
-        @media (max-width: 480px) {
-            .logo h1 {
-                font-size: 20px;
+        /* Small phones */
+        @media (max-width: 420px) {
+            .logo-wrapper h1 {
+                font-size: 22px;
+            }
+
+            .logo-wrapper img {
+                height: 36px;
+            }
+
+            .member-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-sm);
+            }
+
+            .member-name-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-xs);
+            }
+
+            .member-avatar {
+                display: none;
             }
 
             .member-card {
-                padding: var(--spacing-md);
+                padding: var(--spacing-sm);
             }
 
             .member-info-item .value {
-                font-size: 16px;
+                font-size: 15px;
             }
+
+            .container {
+                padding: var(--spacing-sm);
+            }
+        }
+
+        /* Landscape phones */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: var(--spacing-sm);
+            }
+
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .header {
+                margin-bottom: var(--spacing-md);
+            }
+
+            .logo-wrapper img {
+                height: 32px;
+            }
+
+            .logo-wrapper h1 {
+                font-size: 20px;
+            }
+
+            .search-box {
+                margin-bottom: var(--spacing-md);
+            }
+
+            .search-box input {
+                padding: 10px 36px 10px 14px;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .member-card {
+                padding: var(--spacing-sm);
+                margin-top: var(--spacing-sm);
+            }
+
+            .member-info-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--spacing-xs);
+            }
+
+            .member-info-item {
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            .member-info-item .value {
+                font-size: 14px;
+            }
+        }
+
+        /* ============================================================
+               ACCESSIBILITY - تحسينات إمكانية الوصول
+               ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus-visible for keyboard navigation */
+        *:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
         }
     </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        🌙
+
+    <!-- ============================================================
+    THEME TOGGLE
+    ============================================================ -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="تبديل الوضع الليلي / النهاري">
+        <span id="themeIcon">🌙</span>
     </button>
 
-    <!-- Main Container -->
-    <div class="container glass">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <img src="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png" alt="Gam3ety Logo">
+    <!-- ============================================================
+    MAIN CONTAINER
+    ============================================================ -->
+    <div class="container glass-card">
+
+        <!-- ==================== HEADER ==================== -->
+        <header class="header">
+            <div class="logo-wrapper">
+                <img src="https://i.postimg.cc/W3vY4xmJ/Gam3ety.png" alt="شعار جمعيتي">
                 <h1>جمعيتي</h1>
             </div>
-            <p>أدخل رقم الهاتف للبحث عن عضو في الجمعية</p>
-        </div>
+            <p class="subtitle">
+                <i class="fas fa-search" style="font-family: 'Font Awesome 6 Free'; font-weight: 900;"></i>
+                أدخل رقم الهاتف للبحث عن عضو
+            </p>
+        </header>
 
-        <!-- Search Box -->
-        <div class="search-box">
-            <input 
-                type="tel" 
-                id="phoneInput" 
-                placeholder="رقم الهاتف"
-                dir="ltr"
-                autocomplete="tel"
-            >
-            <button class="btn btn-primary" onclick="searchMember()">
-                بحث
+        <!-- ==================== SEARCH BOX ==================== -->
+        <div class="search-box" role="search">
+            <div class="input-wrapper">
+                <input
+                    type="tel"
+                    id="phoneInput"
+                    placeholder="رقم الهاتف"
+                    dir="ltr"
+                    autocomplete="tel"
+                    aria-label="رقم الهاتف"
+                    maxlength="11"
+                >
+                <span class="input-icon"></span>
+            </div>
+            <button class="btn btn-primary" onclick="searchMember()" id="searchBtn">
+                <span></span> بحث
             </button>
         </div>
 
-        <!-- Loading -->
-        <div class="loading" id="loading">
+        <!-- ==================== LOADING ==================== -->
+        <div class="loading" id="loading" role="status" aria-live="polite">
             <div class="spinner"></div>
-            <p style="margin-top: var(--spacing-md); color: var(--text-secondary);">جاري البحث...</p>
+            <p>جاري البحث...</p>
         </div>
 
-        <!-- Not Found -->
-        <div class="not-found" id="notFound">
-            <div class="icon">🔍</div>
+        <!-- ==================== NOT FOUND ==================== -->
+        <div class="not-found" id="notFound" role="alert">
+            <div class="icon-wrapper"></div>
             <h3>لا يوجد عضو</h3>
             <p>لم نجد أي عضو مسجل بهذا الرقم</p>
         </div>
 
-        <!-- Member Card -->
-        <div class="member-card" id="memberCard">
+        <!-- ==================== MEMBER CARD ==================== -->
+        <div class="member-card" id="memberCard" role="article">
+
+            <!-- Member Header -->
             <div class="member-header">
-                <div>
-                    <div class="member-name" id="memberName">-</div>
-                    <div class="member-phone" id="memberPhone">-</div>
+                <div class="member-name-section">
+                    <div class="member-avatar" id="memberAvatar">ع</div>
+                    <div>
+                        <div class="member-name" id="memberName">-</div>
+                        <div class="member-phone">
+                            <i class="fas fa-phone" style="font-family: 'Font Awesome 6 Free'; font-weight: 900;"></i>
+                            <span id="memberPhone">-</span>
+                        </div>
+                    </div>
                 </div>
                 <div id="memberStatus">-</div>
             </div>
 
+            <!-- Info Grid -->
             <div class="member-info-grid">
                 <div class="member-info-item">
-                    <span class="label">المبلغ الشهري</span>
+                    <span class="label"> المبلغ الشهري</span>
                     <span class="value" id="monthlyPayment">-</span>
                 </div>
                 <div class="member-info-item">
@@ -543,139 +1104,156 @@
                     <span class="value" id="gameyaValue">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">المبلغ المدفوع</span>
+                    <span class="label"> المبلغ المدفوع</span>
                     <span class="value success" id="paidAmount">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">المبلغ المتبقي</span>
+                    <span class="label"> المبلغ المتبقي</span>
                     <span class="value danger" id="remainingAmount">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">الأشهر المدفوعة</span>
+                    <span class="label"> الأشهر المدفوعة</span>
                     <span class="value" id="paidMonths">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">الأشهر المتبقية</span>
+                    <span class="label"> الأشهر المتبقية</span>
                     <span class="value" id="remainingMonths">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">المبلغ المستلم</span>
+                    <span class="label"> المبلغ المستلم</span>
                     <span class="value success" id="receiveAmount">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">دور الاستلام</span>
+                    <span class="label"> دور الاستلام</span>
                     <span class="value" id="collectionOrder">-</span>
                 </div>
                 <div class="member-info-item">
-                    <span class="label">تاريخ الاستلام</span>
+                    <span class="label"> تاريخ الاستلام</span>
                     <span class="value" id="collectionDate">-</span>
                 </div>
                 <div class="member-info-item">
                     <span class="label">المتبقي للاسم</span>
                     <span class="value" id="remainingName">-</span>
                 </div>
-                <div class="member-info-item" style="grid-column: 1 / -1;">
-                    <span class="label">ملاحظات</span>
-                    <span class="value" id="notes" style="font-size: 14px; font-weight: 400;">-</span>
+                <div class="member-info-item full-width">
+                    <span class="label"> ملاحظات</span>
+                    <span class="notes-text" id="notes">-</span>
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="footer">
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="footer">
             <div class="footer-actions">
-                <a href="/privacy-policy" class="btn btn-outline btn-sm">سياسة الخصوصية</a>
+                <a href="/privacy-policy" class="btn btn-outline btn-sm">
+                 سياسة الخصوصية
+                </a>
             </div>
-            <p style="margin-top: var(--spacing-md);">
+            <p class="copyright">
                 جميع الحقوق محفوظة 2026 © <strong>جمعيتي</strong>
             </p>
-        </div>
+        </footer>
+
     </div>
 
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script>
         // ==================== Theme Toggle ====================
         function toggleTheme() {
             const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        }
-
-        function updateThemeIcon(theme) {
-            const btn = document.querySelector('.theme-toggle');
-            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            document.getElementById('themeIcon').textContent = next === 'dark' ? '☀️' : '🌙';
         }
 
         // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
+        document.getElementById('themeIcon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
         // ==================== Search Member ====================
         async function searchMember() {
-            const phoneInput = document.getElementById('phoneInput');
-            const phone = phoneInput.value.trim();
+            const input = document.getElementById('phoneInput');
+            const phone = input.value.trim();
 
-            // Validate phone number
             if (!phone) {
-                showNotification('يرجى إدخال رقم الهاتف', 'error');
-                phoneInput.focus();
+                showNotification('📱 يرجى إدخال رقم الهاتف', 'error');
+                input.focus();
                 return;
             }
 
-            // Validate Egyptian phone number
             const phoneRegex = /^01[0-2][0-9]{8}$/;
             if (!phoneRegex.test(phone)) {
-                showNotification('رقم الهاتف غير صحيح. يجب أن يكون 11 رقم ويبدأ بـ 010، 011، أو 012', 'error');
-                phoneInput.focus();
+                showNotification('⚠️ رقم غير صحيح - يجب أن يكون 11 رقم ويبدأ بـ 010، 011، أو 012', 'error');
+                input.focus();
                 return;
             }
 
-            // Show loading
-            document.getElementById('loading').classList.add('active');
-            document.getElementById('memberCard').classList.remove('active');
-            document.getElementById('notFound').classList.remove('active');
+            // UI loading state
+            const loading = document.getElementById('loading');
+            const card = document.getElementById('memberCard');
+            const notFound = document.getElementById('notFound');
+            const searchBtn = document.getElementById('searchBtn');
+
+            loading.classList.add('active');
+            card.classList.remove('active');
+            notFound.classList.remove('active');
+            searchBtn.disabled = true;
+            searchBtn.innerHTML = '<span class="spinner" style="width:20px;height:20px;border-width:3px;"></span> جاري...';
 
             try {
                 const response = await fetch(`/api/member/${phone}`);
                 const data = await response.json();
 
-                // Hide loading
-                document.getElementById('loading').classList.remove('active');
+                loading.classList.remove('active');
 
                 if (response.ok) {
                     displayMember(data);
                 } else if (response.status === 404) {
-                    document.getElementById('notFound').classList.add('active');
+                    notFound.classList.add('active');
                 } else {
-                    showNotification(data.error || 'حدث خطأ أثناء البحث', 'error');
+                    showNotification(data.error || '❌ حدث خطأ أثناء البحث', 'error');
                 }
             } catch (error) {
                 console.error('Search error:', error);
-                document.getElementById('loading').classList.remove('active');
-                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+                loading.classList.remove('active');
+                showNotification('⚠️ حدث خطأ في الاتصال بالخادم', 'error');
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.innerHTML = '🔍 بحث';
             }
         }
 
         // ==================== Display Member ====================
         function displayMember(member) {
+            const getInitial = (name) => {
+                if (!name) return 'ع';
+                const trimmed = name.trim();
+                return trimmed.charAt(0) || 'ع';
+            };
+
+            document.getElementById('memberAvatar').textContent = getInitial(member.name);
             document.getElementById('memberName').textContent = member.name || '-';
             document.getElementById('memberPhone').textContent = member.phone || '-';
 
-            // Status badge
-            const statusBadge = document.getElementById('memberStatus');
+            // Status
             const status = member.status || 'غير معروف';
-            let badgeClass = 'badge';
-            if (status === 'نشط') badgeClass += ' badge-active';
-            else if (status === 'منتهي') badgeClass += ' badge-finished';
-            else badgeClass += ' badge-pending';
-            statusBadge.innerHTML = `<span class="${badgeClass}">${status}</span>`;
+            const statusMap = {
+                'نشط': 'badge-active',
+                'منتهي': 'badge-finished',
+                'معلق': 'badge-pending'
+            };
+            const badgeClass = statusMap[status] || 'badge-pending';
+            document.getElementById('memberStatus').innerHTML =
+                `<span class="badge ${badgeClass}">${status}</span>`;
 
-            // Format currency
+            // Currency formatter
             const formatCurrency = (amount) => {
-                if (!amount && amount !== 0) return '-';
+                if (amount === undefined || amount === null) return '-';
                 return `${Number(amount).toLocaleString('ar-EG')} ج.م`;
             };
 
@@ -683,75 +1261,91 @@
             document.getElementById('gameyaValue').textContent = formatCurrency(member.gameyaValue);
             document.getElementById('paidAmount').textContent = formatCurrency(member.paidAmount);
             document.getElementById('remainingAmount').textContent = formatCurrency(member.remainingAmount);
-            document.getElementById('paidMonths').textContent = member.paidMonths || 0;
-            document.getElementById('remainingMonths').textContent = member.remainingMonths || 0;
+            document.getElementById('paidMonths').textContent = member.paidMonths ?? 0;
+            document.getElementById('remainingMonths').textContent = member.remainingMonths ?? 0;
             document.getElementById('receiveAmount').textContent = formatCurrency(member.receiveAmount);
             document.getElementById('collectionOrder').textContent = member.collectionOrder || '-';
             document.getElementById('collectionDate').textContent = member.collectionDate || '-';
             document.getElementById('remainingName').textContent = member.remainingName || '-';
             document.getElementById('notes').textContent = member.notes || 'لا توجد ملاحظات';
 
-            // Show card
             document.getElementById('memberCard').classList.add('active');
         }
 
-        // ==================== Notification System ====================
+        // ==================== Notification ====================
         function showNotification(message, type = 'info') {
-            // Remove existing notifications
             const existing = document.querySelector('.notification');
             if (existing) existing.remove();
 
+            const icons = {
+                success: '✅',
+                error: '❌',
+                info: 'ℹ️'
+            };
+
             const notification = document.createElement('div');
             notification.className = `notification notification-${type}`;
-            notification.textContent = message;
+            notification.innerHTML = `<span>${icons[type] || '📢'}</span> ${message}`;
             notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 16px 24px;
-                border-radius: 8px;
-                background: var(--bg-secondary);
-                box-shadow: var(--shadow-lg);
-                border-right: 4px solid ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
-                z-index: 9999;
-                animation: fadeIn 0.3s ease-out;
-                max-width: 400px;
-                font-family: var(--font-family);
-                color: var(--text-primary);
-            `;
+                        position: fixed;
+                        bottom: 30px;
+                        right: 30px;
+                        padding: 16px 28px;
+                        border-radius: 16px;
+                        background: var(--bg-card);
+                        backdrop-filter: blur(20px);
+                        box-shadow: var(--shadow-xl);
+                        border-right: 5px solid ${type === 'success' ? '#0E8F6B' : type === 'error' ? '#D05A5A' : '#3B82F6'};
+                        z-index: 9999;
+                        max-width: 420px;
+                        font-family: var(--font-family);
+                        color: var(--text-primary);
+                        font-weight: 500;
+                        animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        font-size: 15px;
+                    `;
 
             document.body.appendChild(notification);
 
-            // Auto remove after 4 seconds
             setTimeout(() => {
                 notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100px)';
+                notification.style.transform = 'translateY(20px) scale(0.95)';
                 notification.style.transition = 'all 0.3s ease-out';
                 setTimeout(() => notification.remove(), 300);
             }, 4000);
         }
 
-        // ==================== Enter Key Support ====================
+        // ==================== Enter Key ====================
         document.getElementById('phoneInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                e.preventDefault();
                 searchMember();
             }
         });
 
-        // ==================== Auto-focus ====================
+        // ==================== Auto Focus ====================
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('phoneInput').focus();
         });
 
         // ==================== Phone Input Formatting ====================
-        document.getElementById('phoneInput').addEventListener('input', function(e) {
-            // Remove any non-digit characters
+        document.getElementById('phoneInput').addEventListener('input', function() {
             this.value = this.value.replace(/\D/g, '');
-            // Limit to 11 digits
             if (this.value.length > 11) {
                 this.value = this.value.slice(0, 11);
             }
         });
+
+        // ==================== Paste cleanup ====================
+        document.getElementById('phoneInput').addEventListener('paste', function(e) {
+            setTimeout(() => {
+                this.value = this.value.replace(/\D/g, '').slice(0, 11);
+            }, 10);
+        });
     </script>
+
 </body>
 </html>
