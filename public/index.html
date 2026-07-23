@@ -1181,7 +1181,7 @@
             const phone = input.value.trim();
 
             if (!phone) {
-                showNotification('📱 يرجى إدخال رقم الهاتف', 'error');
+                showNotification('يرجى إدخال رقم الهاتف', 'error');
                 input.focus();
                 return;
             }
@@ -1216,15 +1216,15 @@
                 } else if (response.status === 404) {
                     notFound.classList.add('active');
                 } else {
-                    showNotification(data.error || '❌ حدث خطأ أثناء البحث', 'error');
+                    showNotification(data.error || 'حدث خطأ أثناء البحث', 'error');
                 }
             } catch (error) {
                 console.error('Search error:', error);
                 loading.classList.remove('active');
-                showNotification('⚠️ حدث خطأ في الاتصال بالخادم', 'error');
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
             } finally {
                 searchBtn.disabled = false;
-                searchBtn.innerHTML = '🔍 بحث';
+                searchBtn.innerHTML = 'بحث';
             }
         }
 
